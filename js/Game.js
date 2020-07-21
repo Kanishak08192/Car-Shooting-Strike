@@ -44,7 +44,7 @@ class Game {
       Player.getPlayerInfo();
       
       if(allPlayers !== undefined){
-        background(198,135,103);
+        background(73,73,73);
         image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
         
         //var display_position = 100;
@@ -53,7 +53,7 @@ class Game {
         var index = 0;
   
         //x and y position of the cars
-        var x = 15 ;
+        var x = 1 ;
         var y;
   
         for(var plr in allPlayers){
@@ -61,7 +61,7 @@ class Game {
           index = index + 1 ;
   
           //position the cars a little away from each other in x direction
-          x = x + 300;
+          x = x + 350;
           //use data form the database to display the cars in y direction
           y = displayHeight - allPlayers[plr].distance;
           cars[index-1].x = x;

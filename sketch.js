@@ -1,11 +1,11 @@
 var canvas, backgroundImage;
-
+var enemy;
 var gameState = 0;
 var playerCount;
 var allPlayers;
 var distance = 0;
 var database;
-
+var enemyGroup;
 var form, player, game;
 
 var cars, car1, car2;
@@ -18,15 +18,17 @@ function preload(){
   car1_img = loadImage("../images/car1.png");
   car2_img = loadImage("../images/car1.png");
   ground = loadImage("../images/ground.png");
+  enemy_img = loadImage("images/enemy.png");
 }
 
 function setup(){
-  canvas = createCanvas(displayWidth + 30, displayHeight +70);
+  canvas = createCanvas(displayWidth + 30, displayHeight + 70);
   background(background_img);
   database = firebase.database();
   game = new Game();
   game.getState();
   game.start();
+  enemyGroup = new Group();
 }
 
 
@@ -41,4 +43,25 @@ function draw(){
   if(gameState === 2){
     game.end();
   }
+
+  spawnEnemys();
+}
+
+
+function spawnEnemys(){
+if (frameCount % 60 === 0) {
+  var enemy = createSprite(800,-displayHeight-1800,40,10);
+  //enemy.y = Math.round(random(0,10));
+  enemy.x = Math.round(random(200,800));
+
+  enemy.velocityY = 2;
+  enemy.addImage(enemy_img);
+  enemy.scale = 0.5;
+  
+   //assign lifetime to the variable
+   //enemy.lifetime = 200;
+  
+  //add each cloud to the group
+  enemyGroup.add(enemy);
+}
 }
