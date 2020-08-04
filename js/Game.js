@@ -40,7 +40,7 @@ class Game {
   
     play(){
       form.hide();
-      
+    
       Player.getPlayerInfo();
       
       if(allPlayers !== undefined){
@@ -61,12 +61,12 @@ class Game {
           index = index + 1 ;
   
           //position the cars a little away from each other in x direction
-          x = x + 350;
+          x = allPlayers[plr].x;
           //use data form the database to display the cars in y direction
           y = displayHeight - allPlayers[plr].distance;
-          cars[index-1].x = x;
+          cars[index-1].x = x ;
           cars[index-1].y = y;
-  
+        
           if (index === player.index){
             stroke(10);
             fill("red");
@@ -82,20 +82,35 @@ class Game {
   
       }
   
-      if(keyIsDown(UP_ARROW) && player.index !== null){
-        player.distance +=10
-        player.update();
-      }
-  
-      if(player.distance > 3000){
+    
+
+      if( player.index !== null){
+        if(keyIsDown(LEFT_ARROW)){
+            player.x -=10;
+            player.update();
+        }
+        else if(keyIsDown(RIGHT_ARROW)){
+            player.x +=10;
+            player.update();
+        }
+        else if(keyIsDown(UP_ARROW)){
+          player.update();
+          player.distance +=10
+        }
+       
+      if(player.distance > 3800){
         gameState = 2;
       }
      
       drawSprites();
     }
   
+  }
     end(){
       console.log("Game Ended");
     }
-  }
+
+
+    
   
+  }

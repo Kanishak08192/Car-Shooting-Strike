@@ -7,7 +7,7 @@ var distance = 0;
 var database;
 var enemyGroup;
 var form, player, game;
-
+var position;
 var cars, car1, car2;
 
 var track, car1_img, car2_img;
@@ -49,12 +49,13 @@ function draw(){
 
 
 function spawnEnemys(){
-if (frameCount % 60 === 0) {
-  var enemy = createSprite(800,-displayHeight-1800,40,10);
+if (frameCount % 20 === 0) {
+  var enemy = createSprite(800,displayHeight,40,10);
   //enemy.y = Math.round(random(0,10));
-  enemy.x = Math.round(random(200,800));
+  enemy.x = Math.round(random(300,800));
+  enemy.y = Math.round(random(displayHeight,-displayHeight-200));
 
-  enemy.velocityY = 2;
+  enemy.velocityY = -5;
   enemy.addImage(enemy_img);
   enemy.scale = 0.5;
   

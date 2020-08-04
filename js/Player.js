@@ -4,6 +4,8 @@ class Player {
     this.distance = 0;
     this.name = null;
     this.rank = null;
+    this.x = 0;
+    this.y = 0;
   }
 
   getCount(){
@@ -23,7 +25,9 @@ class Player {
     var playerIndex = "players/player" + this.index;
     database.ref(playerIndex).set({
       name:this.name,
-      distance:this.distance
+      distance:this.distance,
+      x:this.x,
+      y:this.y
     });
   }
 
@@ -45,4 +49,8 @@ class Player {
       CarsAtEnd : rank
     })
   }
+   
+  
+    
 }
+
